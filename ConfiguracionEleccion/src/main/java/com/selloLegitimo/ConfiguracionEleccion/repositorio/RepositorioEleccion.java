@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepositorioEleccion extends JpaRepository<Eleccion, Long> {
+	boolean existsById(Long id);
 }
