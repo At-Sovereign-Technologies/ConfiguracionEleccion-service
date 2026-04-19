@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -39,6 +41,22 @@ public class ManejadorGlobalExcepciones {
 		logger.warn("Recurso no encontrado: {}", excepcion.getMessage());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 			.body(crearRespuesta(HttpStatus.NOT_FOUND, excepcion.getMessage(), null));
+	}
+
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	public ResponseEntity<Map<String, Object>> manejarJsonInvalido(HttpMessageNotReadableException excepcion) {
+		String detalle = excepcion.getMostSpecificCause() == null ? excepcion.getMessage()
+			: excepcion.getMostSpecificCause().getMessage();
+		logger.warn("Solicitud con JSON invalido: {}", detalle);
+		return ResponseEntity.badRequest()
+			.body(crearRespuesta(HttpStatus.BAD_REQUEST, "JSON invalido o valor no soportado", null));
+	}
+
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	public ResponseEntity<Map<String, Object>> manejarMetodoNoSoportado(HttpRequestMethodNotSupportedException excepcion) {
+		logger.warn("Metodo HTTP no soportado: {}", excepcion.getMethod());
+		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED)
+			.body(crearRespuesta(HttpStatus.METHOD_NOT_ALLOWED, "Metodo HTTP no soportado", null));
 	}
 
 	@ExceptionHandler(Exception.class)

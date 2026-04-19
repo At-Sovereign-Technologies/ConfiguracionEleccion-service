@@ -29,6 +29,12 @@ public class ControladorEleccion {
 	@Autowired
 	private IServicioEleccion servicioEleccion;
 
+	@GetMapping
+	public ResponseEntity<java.util.List<RespuestaEleccion>> listarElecciones() {
+		logger.info("Solicitud recibida para listar todas las elecciones");
+		return ResponseEntity.ok(servicioEleccion.listarElecciones());
+	}
+
 	@PostMapping
 	public ResponseEntity<RespuestaEleccion> crearEleccion(@Valid @RequestBody SolicitudCrearEleccion solicitud) {
 		logger.info("Solicitud recibida para crear una eleccion con nombre {}", solicitud.getNombreOficial());

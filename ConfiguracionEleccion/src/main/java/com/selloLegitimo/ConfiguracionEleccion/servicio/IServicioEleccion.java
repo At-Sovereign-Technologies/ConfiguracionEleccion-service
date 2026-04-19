@@ -18,4 +18,6 @@ public interface IServicioEleccion {
 	RespuestaTarjeton generarTarjeton(Long idEleccion, SolicitudGenerarTarjeton solicitud);
 
 	RespuestaReglasVictoria obtenerReglasVictoria(Long idEleccion);
+
+	java.util.List<RespuestaEleccion> listarElecciones();
 }

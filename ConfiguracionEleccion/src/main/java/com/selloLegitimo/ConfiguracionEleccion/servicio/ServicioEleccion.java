@@ -274,6 +274,15 @@ public class ServicioEleccion implements IServicioEleccion {
 		return circunscripcionesNormalizadas;
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public java.util.List<RespuestaEleccion> listarElecciones() {
+		logger.info("Consultando listado de elecciones");
+		return repositorioEleccion.findAll().stream()
+			.map(this::convertirARespuesta)
+			.collect(java.util.stream.Collectors.toList());
+	}
+
 	private RespuestaEleccion convertirARespuesta(Eleccion eleccion) {
 		RespuestaEleccion respuesta = new RespuestaEleccion();
 		respuesta.setId(eleccion.getId());

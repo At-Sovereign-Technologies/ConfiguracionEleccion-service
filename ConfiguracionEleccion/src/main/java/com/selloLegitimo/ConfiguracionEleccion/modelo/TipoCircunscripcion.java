@@ -4,5 +4,5 @@ public enum TipoCircunscripcion {
 	NACIONAL,
 	TERRITORIAL,
 	ESPECIAL,
-	INTERNACIONAL
+	INTERNACIONAL;
 }

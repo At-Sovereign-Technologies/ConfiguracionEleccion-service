@@ -4,5 +4,5 @@ public enum CodigoMetodoElectoral {
 	ME_01,
 	ME_02,
 	ME_03,
-	ME_04
+	ME_04;
 }

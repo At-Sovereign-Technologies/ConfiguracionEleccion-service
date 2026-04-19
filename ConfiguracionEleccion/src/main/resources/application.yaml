@@ -2,7 +2,7 @@ spring:
   application:
     name: ConfiguracionEleccion
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/elecciones_db}
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/elecciones_db}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
@@ -16,7 +16,7 @@ spring:
   jackson:
     time-zone: America/Bogota
 server:
-  port: 8080
+  port: 8081
 
 logging:
   level:
