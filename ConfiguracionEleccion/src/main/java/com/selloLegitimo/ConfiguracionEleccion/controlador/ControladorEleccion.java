@@ -1,10 +1,6 @@
 package com.selloLegitimo.ConfiguracionEleccion.controlador;
 
 import com.selloLegitimo.ConfiguracionEleccion.dto.RespuestaEleccion;
-import com.selloLegitimo.ConfiguracionEleccion.dto.RespuestaModeloCandidatura;
-import com.selloLegitimo.ConfiguracionEleccion.dto.RespuestaReglasVictoria;
-import com.selloLegitimo.ConfiguracionEleccion.dto.RespuestaTarjeton;
-import com.selloLegitimo.ConfiguracionEleccion.dto.SolicitudGenerarTarjeton;
 import com.selloLegitimo.ConfiguracionEleccion.dto.SolicitudCrearEleccion;
 import com.selloLegitimo.ConfiguracionEleccion.servicio.IServicioEleccion;
 import jakarta.validation.Valid;
@@ -48,22 +44,4 @@ public class ControladorEleccion {
 		return ResponseEntity.ok(servicioEleccion.obtenerEleccionPorId(id));
 	}
 
-	@GetMapping("/{idEleccion}/modelo-candidatura")
-	public ResponseEntity<RespuestaModeloCandidatura> obtenerModeloCandidatura(@PathVariable Long idEleccion) {
-		logger.info("Solicitud recibida para consultar el modelo de candidatura de la eleccion {}", idEleccion);
-		return ResponseEntity.ok(servicioEleccion.obtenerModeloCandidatura(idEleccion));
-	}
-
-	@PostMapping("/{idEleccion}/tarjeton")
-	public ResponseEntity<RespuestaTarjeton> generarTarjeton(@PathVariable Long idEleccion,
-		@Valid @RequestBody SolicitudGenerarTarjeton solicitud) {
-		logger.info("Solicitud recibida para generar el tarjeton de la eleccion {}", idEleccion);
-		return ResponseEntity.ok(servicioEleccion.generarTarjeton(idEleccion, solicitud));
-	}
-
-	@GetMapping("/{idEleccion}/reglas-victoria")
-	public ResponseEntity<RespuestaReglasVictoria> obtenerReglasVictoria(@PathVariable Long idEleccion) {
-		logger.info("Solicitud recibida para consultar las reglas de victoria de la eleccion {}", idEleccion);
-		return ResponseEntity.ok(servicioEleccion.obtenerReglasVictoria(idEleccion));
-	}
 }

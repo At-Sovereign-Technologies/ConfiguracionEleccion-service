@@ -8,7 +8,6 @@ import com.selloLegitimo.ConfiguracionEleccion.modelo.TipoCircunscripcion;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,18 +22,9 @@ public class RespuestaEleccion {
 	private LocalDateTime fechaCierreJornada;
 	private ModalidadHabilitada modalidadHabilitada;
 	private TipoCircunscripcion tipoCircunscripcion;
-	private List<String> jerarquiaGeografica;
-	private List<String> circunscripcionesEspeciales;
-	private String zonaHoraria;
-	private String idioma;
-	private String documentoIdentidadValido;
-	private String reglasElegibilidad;
-	private Double umbralPrimeraVueltaPorcentaje;
-	private Boolean requiereMasUnoPrimeraVuelta;
-	private Double porcentajeUmbralListas;
+	private String documentoNoVotable;
 	private Integer numeroCurules;
 	private String formulaCifraRepartidora;
-	private String criterioEliminacion;
 	private String condicionVictoria;
 	private EstadoEleccion estado;
 }

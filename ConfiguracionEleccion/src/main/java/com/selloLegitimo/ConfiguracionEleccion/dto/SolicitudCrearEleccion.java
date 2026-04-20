@@ -6,14 +6,12 @@ import com.selloLegitimo.ConfiguracionEleccion.modelo.ModalidadHabilitada;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.CodigoMetodoElectoral;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.TipoEleccion;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.TipoCircunscripcion;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -47,34 +45,12 @@ public class SolicitudCrearEleccion {
 	@NotNull(message = "El tipo de circunscripcion es obligatorio")
 	private TipoCircunscripcion tipoCircunscripcion;
 
-	@NotEmpty(message = "La jerarquia geografica es obligatoria")
-	private List<String> jerarquiaGeografica;
-
-	private List<String> circunscripcionesEspeciales;
-
-	@NotBlank(message = "La zona horaria es obligatoria")
-	private String zonaHoraria;
-
-	@NotBlank(message = "El idioma es obligatorio")
-	private String idioma;
-
-	@NotBlank(message = "El documento de identidad valido es obligatorio")
-	private String documentoIdentidadValido;
-
-	@NotBlank(message = "Las reglas de elegibilidad son obligatorias")
-	private String reglasElegibilidad;
-
-	private Double umbralPrimeraVueltaPorcentaje;
-
-	private Boolean requiereMasUnoPrimeraVuelta;
-
-	private Double porcentajeUmbralListas;
+	@NotBlank(message = "El documento no votable es obligatorio")
+	private String documentoNoVotable;
 
 	private Integer numeroCurules;
 
 	private String formulaCifraRepartidora;
-
-	private String criterioEliminacion;
 
 	private String condicionVictoria;
 
