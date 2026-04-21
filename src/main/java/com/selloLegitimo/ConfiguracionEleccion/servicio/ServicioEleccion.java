@@ -71,7 +71,7 @@ public class ServicioEleccion {
 	}
 
 	@Transactional(readOnly = true)
-	public java.util.List<RespuestaEleccion> listarElecciones() {
+	public List<RespuestaEleccion> listarElecciones() {
 		logger.info("Consultando listado de elecciones");
 		return repositorioEleccion.findAll().stream()
 			.map(this::convertirARespuesta)
