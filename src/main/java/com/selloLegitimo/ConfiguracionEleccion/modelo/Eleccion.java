@@ -9,6 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "elecciones")
@@ -61,6 +65,26 @@ public class Eleccion {
 
 	@Column(name = "condicion_victoria", length = 180)
 	private String condicionVictoria;
+
+	// Modelos de candidatura separados por coma, ej: "ABIERTA,CERRADA"
+	@Column(name = "modelos_candidatura", length = 50)
+	private String modelosCandidaturaRaw;
+
+	// Exenciones habilitadas separadas por pipe, ej: "PERSONAL ACTIVO...|DISCAPACIDAD..."
+	@Column(name = "excciones_habilitadas", length = 500)
+	private String excencionesHabilitadasRaw;
+
+	// Configuracion legislativa — Senado (JSON serializado)
+	@Column(name = "senado_config_json", columnDefinition = "TEXT")
+	private String senadoConfigJson;
+
+	// Configuracion legislativa — Camara: departamentos (JSON serializado)
+	@Column(name = "camara_deptos_json", columnDefinition = "TEXT")
+	private String camaraDeptosjson;
+
+	// Configuracion legislativa — Camara: circunscripciones especiales (JSON serializado)
+	@Column(name = "camara_especiales_json", columnDefinition = "TEXT")
+	private String camaraEspecialesJson;
 
 	public Long getId() {
 		return id;
@@ -172,5 +196,68 @@ public class Eleccion {
 
 	public void setCondicionVictoria(String condicionVictoria) {
 		this.condicionVictoria = condicionVictoria;
+	}
+
+	public List<ModeloCandidatura> getModelosCandidatura() {
+		if (modelosCandidaturaRaw == null || modelosCandidaturaRaw.isBlank()) {
+			return new ArrayList<>();
+		}
+		return Arrays.stream(modelosCandidaturaRaw.split(","))
+			.map(String::trim)
+			.filter(s -> !s.isBlank())
+			.map(ModeloCandidatura::valueOf)
+			.collect(Collectors.toList());
+	}
+
+	public void setModelosCandidatura(List<ModeloCandidatura> modelos) {
+		if (modelos == null || modelos.isEmpty()) {
+			this.modelosCandidaturaRaw = null;
+		} else {
+			this.modelosCandidaturaRaw = modelos.stream()
+				.map(Enum::name)
+				.collect(Collectors.joining(","));
+		}
+	}
+
+	public List<String> getExcencionesHabilitadas() {
+		if (excencionesHabilitadasRaw == null || excencionesHabilitadasRaw.isBlank()) {
+			return new ArrayList<>();
+		}
+		return Arrays.stream(excencionesHabilitadasRaw.split("\\|"))
+			.map(String::trim)
+			.filter(s -> !s.isBlank())
+			.collect(Collectors.toList());
+	}
+
+	public void setExcencionesHabilitadas(List<String> excenciones) {
+		if (excenciones == null || excenciones.isEmpty()) {
+			this.excencionesHabilitadasRaw = null;
+		} else {
+			this.excencionesHabilitadasRaw = String.join("|", excenciones);
+		}
+	}
+
+	public String getSenadoConfigJson() {
+		return senadoConfigJson;
+	}
+
+	public void setSenadoConfigJson(String senadoConfigJson) {
+		this.senadoConfigJson = senadoConfigJson;
+	}
+
+	public String getCamaraDeptosjson() {
+		return camaraDeptosjson;
+	}
+
+	public void setCamaraDeptosjson(String camaraDeptosjson) {
+		this.camaraDeptosjson = camaraDeptosjson;
+	}
+
+	public String getCamaraEspecialesJson() {
+		return camaraEspecialesJson;
+	}
+
+	public void setCamaraEspecialesJson(String camaraEspecialesJson) {
+		this.camaraEspecialesJson = camaraEspecialesJson;
 	}
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.EstadoEleccion;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.ModalidadHabilitada;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.CodigoMetodoElectoral;
+import com.selloLegitimo.ConfiguracionEleccion.modelo.ModeloCandidatura;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.TipoEleccion;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.TipoCircunscripcion;
 import jakarta.validation.constraints.NotBlank;
@@ -12,6 +13,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -55,4 +57,22 @@ public class SolicitudCrearEleccion {
 	private String condicionVictoria;
 
 	private EstadoEleccion estado;
+
+	// Modelos de candidatura habilitados para esta eleccion.
+	// Para ME-03 puede incluir ABIERTA, CERRADA, o ambos.
+	// Para otros metodos solo se admite UNICO.
+	private List<ModeloCandidatura> modelosCandidatura;
+
+	// Exenciones automaticas de voto obligatorio seleccionadas.
+	// Ejemplo: ["PERSONAL ACTIVO DE FUERZAS MILITARES Y POLICIA", "DISCAPACIDAD PERMANENTE CERTIFICADA"]
+	private List<String> excencionesHabilitadas;
+
+	// Configuracion del Senado (solo para elecciones LEGISLATIVAS)
+	private ConfiguracionSenadoDto configuracionSenado;
+
+	// Configuracion de la Camara por departamento (solo para elecciones LEGISLATIVAS)
+	private List<ConfiguracionCamaraDeptoDto> configuracionCamara;
+
+	// Configuracion de las circunscripciones especiales de la Camara (solo para elecciones LEGISLATIVAS)
+	private List<ConfiguracionCamaraEspecialDto> configuracionCamaraEspeciales;
 }

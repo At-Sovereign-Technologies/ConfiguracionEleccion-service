@@ -2,7 +2,7 @@ package com.selloLegitimo.ConfiguracionEleccion.controlador;
 
 import com.selloLegitimo.ConfiguracionEleccion.dto.RespuestaEleccion;
 import com.selloLegitimo.ConfiguracionEleccion.dto.SolicitudCrearEleccion;
-import com.selloLegitimo.ConfiguracionEleccion.servicio.IServicioEleccion;
+import com.selloLegitimo.ConfiguracionEleccion.servicio.ServicioEleccion;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class ControladorEleccion {
 	private static final Logger logger = LoggerFactory.getLogger(ControladorEleccion.class);
 
 	@Autowired
-	private IServicioEleccion servicioEleccion;
+	private ServicioEleccion servicioEleccion;
 
 	@GetMapping
 	public ResponseEntity<java.util.List<RespuestaEleccion>> listarElecciones() {

@@ -8,7 +8,7 @@ import com.selloLegitimo.ConfiguracionEleccion.modelo.EstadoEleccion;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.ModalidadHabilitada;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.TipoEleccion;
 import com.selloLegitimo.ConfiguracionEleccion.modelo.TipoCircunscripcion;
-import com.selloLegitimo.ConfiguracionEleccion.servicio.IServicioEleccion;
+import com.selloLegitimo.ConfiguracionEleccion.servicio.ServicioEleccion;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ConfiguracionEleccionApplicationTests {
 
 	@Autowired
-	private IServicioEleccion servicioEleccion;
+	private ServicioEleccion servicioEleccion;
 
 	@Test
 	void contextLoads() {

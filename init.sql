@@ -43,3 +43,18 @@ ALTER TABLE elecciones DROP COLUMN IF EXISTS umbral_primera_vuelta_porcentaje;
 ALTER TABLE elecciones DROP COLUMN IF EXISTS requiere_mas_uno_primera_vuelta;
 ALTER TABLE elecciones DROP COLUMN IF EXISTS porcentaje_umbral_listas;
 ALTER TABLE elecciones DROP COLUMN IF EXISTS criterio_eliminacion;
+
+ALTER TABLE elecciones
+    ADD COLUMN IF NOT EXISTS modelos_candidatura VARCHAR(50);
+
+ALTER TABLE elecciones
+    ADD COLUMN IF NOT EXISTS excciones_habilitadas VARCHAR(500);
+
+ALTER TABLE elecciones
+    ADD COLUMN IF NOT EXISTS senado_config_json TEXT;
+
+ALTER TABLE elecciones
+    ADD COLUMN IF NOT EXISTS camara_deptos_json TEXT;
+
+ALTER TABLE elecciones
+    ADD COLUMN IF NOT EXISTS camara_especiales_json TEXT;
