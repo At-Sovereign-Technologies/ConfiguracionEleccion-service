@@ -1,0 +1,21 @@
+CREATE TABLE elecciones (
+    id BIGSERIAL PRIMARY KEY,
+    nombre_oficial VARCHAR(150) NOT NULL,
+    pais VARCHAR(100) NOT NULL,
+    tipo_eleccion VARCHAR(50) NOT NULL,
+    codigo_metodo_electoral VARCHAR(10) NOT NULL,
+    fecha_inicio_jornada TIMESTAMP NOT NULL,
+    fecha_cierre_jornada TIMESTAMP NOT NULL,
+    modalidad_habilitada VARCHAR(20) NOT NULL,
+    tipo_circunscripcion VARCHAR(30) NOT NULL,
+    documento_no_votable VARCHAR(80) NOT NULL DEFAULT 'N/A',
+    numero_curules INTEGER,
+    formula_cifra_repartidora VARCHAR(80),
+    condicion_victoria VARCHAR(180),
+    estado VARCHAR(30) NOT NULL,
+    modelos_candidatura VARCHAR(50),
+    excciones_habilitadas VARCHAR(500),
+    senado_config_json TEXT,
+    camara_deptos_json TEXT,
+    camara_especiales_json TEXT
+);
