@@ -23,7 +23,7 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 @Service
-public class ServicioEleccion {
+public class ServicioEleccion implements IServicioEleccion {
 
 	private static final Logger logger = LoggerFactory.getLogger(ServicioEleccion.class);
 	private static final String FORMULA_CIFRA_REPARTIDORA_DEFECTO = "D_HONDT";
@@ -33,6 +33,7 @@ public class ServicioEleccion {
 	@Autowired
 	private RepositorioEleccion repositorioEleccion;
 
+	@Override
 	@Transactional
 	public RespuestaEleccion crearEleccion(SolicitudCrearEleccion solicitud) {
 		logger.info("Iniciando creacion de eleccion con nombre {} para el pais {}",
@@ -62,6 +63,7 @@ public class ServicioEleccion {
 		return convertirARespuesta(eleccionGuardada);
 	}
 
+	@Override
 	@Transactional(readOnly = true)
 	public RespuestaEleccion obtenerEleccionPorId(Long id) {
 		logger.info("Consultando eleccion con id {}", id);
@@ -70,8 +72,9 @@ public class ServicioEleccion {
 		return convertirARespuesta(eleccion);
 	}
 
+	@Override
 	@Transactional(readOnly = true)
-	public List<RespuestaEleccion> listarElecciones() {
+	public java.util.List<RespuestaEleccion> listarElecciones() {
 		logger.info("Consultando listado de elecciones");
 		return repositorioEleccion.findAll().stream()
 			.map(this::convertirARespuesta)
