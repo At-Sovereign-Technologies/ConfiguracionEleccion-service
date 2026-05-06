@@ -86,6 +86,18 @@ public class Eleccion {
 	@Column(name = "camara_especiales_json", columnDefinition = "TEXT")
 	private String camaraEspecialesJson;
 
+	@Column(name = "fecha_inicio_mod_candidaturas")
+	private LocalDateTime fechaInicioModCandidaturas;
+
+	@Column(name = "fecha_fin_mod_candidaturas")
+	private LocalDateTime fechaFinModCandidaturas;
+
+	@Column(name = "fecha_limite_reemplazo_candidaturas")
+	private LocalDateTime fechaLimiteReemplazoCandidaturas;
+
+	@Column(name = "edad_minima_candidatura")
+	private Integer edadMinimaCandidatura;
+
 	public Long getId() {
 		return id;
 	}
@@ -259,5 +271,37 @@ public class Eleccion {
 
 	public void setCamaraEspecialesJson(String camaraEspecialesJson) {
 		this.camaraEspecialesJson = camaraEspecialesJson;
+	}
+
+	public LocalDateTime getFechaInicioModCandidaturas() {
+		return fechaInicioModCandidaturas;
+	}
+
+	public void setFechaInicioModCandidaturas(LocalDateTime fechaInicioModCandidaturas) {
+		this.fechaInicioModCandidaturas = fechaInicioModCandidaturas;
+	}
+
+	public LocalDateTime getFechaFinModCandidaturas() {
+		return fechaFinModCandidaturas;
+	}
+
+	public void setFechaFinModCandidaturas(LocalDateTime fechaFinModCandidaturas) {
+		this.fechaFinModCandidaturas = fechaFinModCandidaturas;
+	}
+
+	public LocalDateTime getFechaLimiteReemplazoCandidaturas() {
+		return fechaLimiteReemplazoCandidaturas;
+	}
+
+	public void setFechaLimiteReemplazoCandidaturas(LocalDateTime fechaLimiteReemplazoCandidaturas) {
+		this.fechaLimiteReemplazoCandidaturas = fechaLimiteReemplazoCandidaturas;
+	}
+
+	public Integer getEdadMinimaCandidatura() {
+		return edadMinimaCandidatura;
+	}
+
+	public void setEdadMinimaCandidatura(Integer edadMinimaCandidatura) {
+		this.edadMinimaCandidatura = edadMinimaCandidatura;
 	}
 }

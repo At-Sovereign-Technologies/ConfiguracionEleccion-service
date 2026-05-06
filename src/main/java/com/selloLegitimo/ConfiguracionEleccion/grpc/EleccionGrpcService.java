@@ -62,7 +62,11 @@ public class EleccionGrpcService extends EleccionServiceGrpc.EleccionServiceImpl
                     .setEstado(e.getEstado() != null ? e.getEstado().name() : "")
                     .setFechaInicioJornada(e.getFechaInicioJornada() != null ? e.getFechaInicioJornada().toString() : "")
                     .setFechaCierreJornada(e.getFechaCierreJornada() != null ? e.getFechaCierreJornada().toString() : "")
-                    .setDocumentoNoVotable(e.getDocumentoNoVotable() != null ? e.getDocumentoNoVotable() : "");
+                    .setDocumentoNoVotable(e.getDocumentoNoVotable() != null ? e.getDocumentoNoVotable() : "")
+                    .setFechaInicioModCandidaturas(e.getFechaInicioModCandidaturas() != null ? e.getFechaInicioModCandidaturas().toString() : "")
+                    .setFechaFinModCandidaturas(e.getFechaFinModCandidaturas() != null ? e.getFechaFinModCandidaturas().toString() : "")
+                    .setFechaLimiteReemplazoCandidaturas(e.getFechaLimiteReemplazoCandidaturas() != null ? e.getFechaLimiteReemplazoCandidaturas().toString() : "")
+                    .setEdadMinimaCandidatura(e.getEdadMinimaCandidatura() != null ? e.getEdadMinimaCandidatura() : 18);
             e.getExcencionesHabilitadas().forEach(detalleBuilder::addExcencionesHabilitadas);
             EleccionDetalle detalle = detalleBuilder.build();
             responseObserver.onNext(detalle);
