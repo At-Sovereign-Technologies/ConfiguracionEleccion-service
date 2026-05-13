@@ -24,7 +24,7 @@ spring:
     time-zone: America/Bogota
 
 server:
-  port: 8081
+  port: ${PORT:8081}
 
 grpc:
   server:
