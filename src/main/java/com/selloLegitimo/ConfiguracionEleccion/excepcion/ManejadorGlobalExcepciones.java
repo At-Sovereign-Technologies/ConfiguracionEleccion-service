@@ -1,5 +1,7 @@
 package com.selloLegitimo.ConfiguracionEleccion.excepcion;
 
+import com.selloLegitimo.ConfiguracionEleccion.fraude.excepcion.ExcepcionAccesoDenegado;
+import com.selloLegitimo.ConfiguracionEleccion.fraude.excepcion.ExcepcionEstadoReglaInvalido;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -50,6 +52,20 @@ public class ManejadorGlobalExcepciones {
 		logger.warn("Solicitud con JSON invalido: {}", detalle);
 		return ResponseEntity.badRequest()
 			.body(crearRespuesta(HttpStatus.BAD_REQUEST, "JSON invalido o valor no soportado", null));
+	}
+
+	@ExceptionHandler(ExcepcionAccesoDenegado.class)
+	public ResponseEntity<Map<String, Object>> manejarAccesoDenegado(ExcepcionAccesoDenegado excepcion) {
+		logger.warn("Acceso denegado: {}", excepcion.getMessage());
+		return ResponseEntity.status(HttpStatus.FORBIDDEN)
+			.body(crearRespuesta(HttpStatus.FORBIDDEN, excepcion.getMessage(), null));
+	}
+
+	@ExceptionHandler(ExcepcionEstadoReglaInvalido.class)
+	public ResponseEntity<Map<String, Object>> manejarEstadoReglaInvalido(ExcepcionEstadoReglaInvalido excepcion) {
+		logger.warn("Estado de regla invalido: {}", excepcion.getMessage());
+		return ResponseEntity.status(HttpStatus.CONFLICT)
+			.body(crearRespuesta(HttpStatus.CONFLICT, excepcion.getMessage(), null));
 	}
 
 	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
