@@ -25,7 +25,7 @@ public class ControladorMotorAntifraude {
 	private FraudEngineService fraudEngineService;
 
 	@PostMapping("/evaluate")
-	@RolPermitido({ Rol.ADMIN_RNEC, Rol.DELEGADO_CNE })
+	@RolPermitido({ Rol.ADMIN_RNEC, Rol.DELEGADO_CNE, Rol.ADMINISTRADOR, Rol.SUPERADMIN, Rol.AUDITOR, Rol.OPERADOR })
 	public ResponseEntity<FraudEvaluationResult> evaluar(@Valid @RequestBody VotingEventContext contexto) {
 		logger.info("Evaluacion antifraude mesa {} documento {}",
 			contexto.getEventoActual().getTableId(),

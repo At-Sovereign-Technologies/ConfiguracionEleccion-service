@@ -34,20 +34,20 @@ public class ControladorReglasAntifraude {
 	private IServicioReglasAntifraude servicioReglas;
 
 	@GetMapping
-	@RolPermitido({ Rol.ADMIN_RNEC, Rol.DELEGADO_CNE })
+	@RolPermitido({ Rol.ADMIN_RNEC, Rol.DELEGADO_CNE, Rol.ADMINISTRADOR, Rol.SUPERADMIN, Rol.AUDITOR, Rol.OPERADOR, Rol.MAGISTRADO, Rol.REGISTRADOR })
 	public ResponseEntity<List<RespuestaReglaDto>> listar() {
 		logger.info("Solicitud para listar reglas antifraude");
 		return ResponseEntity.ok(servicioReglas.listar());
 	}
 
 	@GetMapping("/{id}")
-	@RolPermitido({ Rol.ADMIN_RNEC, Rol.DELEGADO_CNE })
+	@RolPermitido({ Rol.ADMIN_RNEC, Rol.DELEGADO_CNE, Rol.ADMINISTRADOR, Rol.SUPERADMIN, Rol.AUDITOR, Rol.OPERADOR, Rol.MAGISTRADO, Rol.REGISTRADOR })
 	public ResponseEntity<RespuestaReglaDto> obtener(@PathVariable Long id) {
 		return ResponseEntity.ok(servicioReglas.obtenerPorId(id));
 	}
 
 	@PostMapping
-	@RolPermitido(Rol.ADMIN_RNEC)
+	@RolPermitido({ Rol.ADMIN_RNEC, Rol.ADMINISTRADOR, Rol.SUPERADMIN })
 	public ResponseEntity<RespuestaReglaDto> crear(@Valid @RequestBody SolicitudCrearReglaDto solicitud,
 		UsuarioContexto usuario) {
 		logger.info("Creacion de regla {} por {}", solicitud.getName(), usuario.getUsuario());
@@ -56,7 +56,7 @@ public class ControladorReglasAntifraude {
 	}
 
 	@PatchMapping("/{id}")
-	@RolPermitido(Rol.ADMIN_RNEC)
+	@RolPermitido({ Rol.ADMIN_RNEC, Rol.ADMINISTRADOR, Rol.SUPERADMIN })
 	public ResponseEntity<RespuestaReglaDto> editar(@PathVariable Long id,
 		@Valid @RequestBody SolicitudEditarReglaDto solicitud, UsuarioContexto usuario) {
 		logger.info("Edicion de regla {} por {}", id, usuario.getUsuario());
@@ -64,14 +64,14 @@ public class ControladorReglasAntifraude {
 	}
 
 	@PostMapping("/{id}/approve")
-	@RolPermitido(Rol.DELEGADO_CNE)
+	@RolPermitido({ Rol.DELEGADO_CNE, Rol.SUPERADMIN })
 	public ResponseEntity<RespuestaReglaDto> aprobar(@PathVariable Long id, UsuarioContexto usuario) {
 		logger.info("Aprobacion de regla {} por delegado {}", id, usuario.getUsuario());
 		return ResponseEntity.ok(servicioReglas.aprobar(id, usuario));
 	}
 
 	@PostMapping("/{id}/reject")
-	@RolPermitido(Rol.DELEGADO_CNE)
+	@RolPermitido({ Rol.DELEGADO_CNE, Rol.SUPERADMIN })
 	public ResponseEntity<RespuestaReglaDto> rechazar(@PathVariable Long id,
 		@Valid @RequestBody SolicitudRechazoDto solicitud, UsuarioContexto usuario) {
 		logger.info("Rechazo de regla {} por delegado {}", id, usuario.getUsuario());
@@ -79,7 +79,7 @@ public class ControladorReglasAntifraude {
 	}
 
 	@DeleteMapping("/{id}")
-	@RolPermitido(Rol.DELEGADO_CNE)
+	@RolPermitido({ Rol.DELEGADO_CNE, Rol.SUPERADMIN })
 	public ResponseEntity<RespuestaReglaDto> desactivar(@PathVariable Long id, UsuarioContexto usuario) {
 		logger.info("Desactivacion de regla {} por delegado {}", id, usuario.getUsuario());
 		return ResponseEntity.ok(servicioReglas.desactivar(id, usuario));
