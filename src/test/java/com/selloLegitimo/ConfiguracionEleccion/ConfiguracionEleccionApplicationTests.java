@@ -39,7 +39,7 @@ class ConfiguracionEleccionApplicationTests {
 		solicitud.setTipoEleccion(TipoEleccion.PRESIDENCIAL);
 		solicitud.setCodigoMetodoElectoral(CodigoMetodoElectoral.ME_01);
 		solicitud.setFechaInicioJornada(LocalDateTime.of(2026, 5, 29, 8, 0));
-		solicitud.setFechaCierreJornada(LocalDateTime.of(2026, 5, 29, 16, 0));
+		solicitud.setFechaCierreJornada(LocalDateTime.of(2026, 5, 31, 8, 0)); // 48 horas exactas
 		solicitud.setModalidadHabilitada(ModalidadHabilitada.AMBAS);
 		solicitud.setTipoCircunscripcion(TipoCircunscripcion.TERRITORIAL);
 		solicitud.setDocumentoNoVotable("N/A");
@@ -85,7 +85,7 @@ class ConfiguracionEleccionApplicationTests {
 		solicitud.setTipoEleccion(TipoEleccion.LEGISLATIVA);
 		solicitud.setCodigoMetodoElectoral(CodigoMetodoElectoral.ME_03);
 		solicitud.setFechaInicioJornada(LocalDateTime.of(2026, 3, 10, 8, 0));
-		solicitud.setFechaCierreJornada(LocalDateTime.of(2026, 3, 10, 17, 0));
+		solicitud.setFechaCierreJornada(LocalDateTime.of(2026, 3, 12, 8, 0)); // 48 horas exactas
 		solicitud.setModalidadHabilitada(ModalidadHabilitada.REMOTA);
 		solicitud.setTipoCircunscripcion(TipoCircunscripcion.ESPECIAL);
 		solicitud.setDocumentoNoVotable("TI");
@@ -117,7 +117,7 @@ class ConfiguracionEleccionApplicationTests {
 		solicitud.setTipoEleccion(TipoEleccion.LEGISLATIVA);
 		solicitud.setCodigoMetodoElectoral(metodo);
 		solicitud.setFechaInicioJornada(LocalDateTime.of(2026, 5, 29, 8, 0));
-		solicitud.setFechaCierreJornada(LocalDateTime.of(2026, 5, 29, 16, 0));
+		solicitud.setFechaCierreJornada(LocalDateTime.of(2026, 5, 31, 8, 0)); // 48 horas exactas
 		solicitud.setModalidadHabilitada(ModalidadHabilitada.AMBAS);
 		solicitud.setTipoCircunscripcion(tipoCircunscripcion);
 		solicitud.setDocumentoNoVotable("N/A");

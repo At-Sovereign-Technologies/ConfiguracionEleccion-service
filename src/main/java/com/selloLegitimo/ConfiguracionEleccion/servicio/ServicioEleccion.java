@@ -89,6 +89,23 @@ public class ServicioEleccion implements IServicioEleccion {
 		if (solicitud.getFechaCierreJornada().isEqual(solicitud.getFechaInicioJornada())) {
 			throw new ExcepcionReglaNegocio("La fecha de cierre debe ser posterior a la fecha de inicio");
 		}
+
+		// RN-02: Validar que la duración de la jornada electoral sea exactamente 48 horas
+		java.time.Duration duracion = java.time.Duration.between(
+			solicitud.getFechaInicioJornada(),
+			solicitud.getFechaCierreJornada()
+		);
+		long horasReales = duracion.toHours();
+		long minutosRestantes = duracion.toMinutes() % 60;
+
+		if (horasReales != 48 || minutosRestantes != 0) {
+			throw new ExcepcionReglaNegocio(
+				String.format(
+					"La jornada electoral debe durar exactamente 48 horas. Duración ingresada: %d horas y %d minutos",
+					horasReales, minutosRestantes
+				)
+			);
+		}
 	}
 
 	private void validarConfiguracionBasica(SolicitudCrearEleccion solicitud) {

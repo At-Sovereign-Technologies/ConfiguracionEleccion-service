@@ -2,9 +2,9 @@ name: Java Spring Boot CI (Test Suite)
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, devel ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, devel ]
   workflow_dispatch:
 
 jobs:
@@ -42,5 +42,5 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Run Maven Test Suite (Ignore deliberate defect failures)
-        run: mvn clean test -Dmaven.test.failure.ignore=true
+      - name: Run Maven Test Suite
+        run: mvn clean test
